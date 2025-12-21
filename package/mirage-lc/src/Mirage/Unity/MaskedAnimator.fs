@@ -93,7 +93,7 @@ type MaskedAnimator() as self =
         let prefab =
             Object.Instantiate<GameObject>(
                 item.spawnPrefab,
-                Vector3.zero,
+                self.transform.position,
                 Quaternion.identity
             )
         prefab.GetComponent<NetworkObject>().Spawn(destroyWithScene = true)
@@ -124,12 +124,11 @@ type MaskedAnimator() as self =
             do! Task.Delay 2000
 
             this.HeldItem <- item
-            this.HeldItem.SetScrapValue scrapValue
 
-            // Disable scanner text.
             let scanNode = item.GetComponentInChildren<ScanNodeProperties>()
             if isNotNull scanNode then
-                scanNode.gameObject.SetActive false
+                this.HeldItem.SetScrapValue scrapValue
+                scanNode.gameObject.SetActive false // Disable scanner text.
 
             // Hide the hover text.
             let collider = item.GetComponent<BoxCollider>()
