@@ -1,5 +1,11 @@
 ## Changelog
 
+### 1.29.0
+
+- Spawning masked enemies with held items now works again.
+
+Huge thanks to [VirusTLNR](<https://github.com/VirusTLNR>) for the fix!
+
 ### 1.28.0
 
 - Networking now works properly for ``v73``.
